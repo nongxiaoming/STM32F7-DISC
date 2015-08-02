@@ -1,0 +1,24 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd     = os.path.join(str(Dir('#')), 'drivers')
+
+# add the general drivers.
+src = Split("""
+board.c
+stm32f7xx_it.c
+drv_usart.c
+drv_led.c
+""")
+
+# add Ethernet drivers.
+if GetDepend('RT_USING_LWIP'):
+    src += ['stm32f7xx_eth.c']
+
+CPPPATH = [cwd]
+
+group = DefineGroup('Drivers', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')
+
