@@ -17,8 +17,7 @@
 #include <rtthread.h>
 #include "drv_led.h"
 
-
-void rt_init_thread_entry(void* parameter)
+static void led_thread_entry(void* parameter)
 {
 
  led_hw_init();
@@ -30,6 +29,19 @@ void rt_init_thread_entry(void* parameter)
 	led_off();
 	rt_thread_delay(RT_TICK_PER_SECOND);
  }
+}
+
+void rt_init_thread_entry(void* parameter)
+{
+
+    rt_thread_t tid;
+
+    tid = rt_thread_create("led",
+        led_thread_entry, RT_NULL,
+        512, 12, 5);
+
+    if (tid != RT_NULL)
+        rt_thread_startup(tid);
 }
 
 int rt_application_init()
