@@ -15,9 +15,11 @@
 
 #include <rthw.h>
 #include <rtthread.h>
-
 #include "board.h"
-
+#ifdef RT_USING_EXT_SDRAM
+#include "drv_sdram.h"
+#include "sram.h"
+#endif
 /**
  * @addtogroup STM32
  */
@@ -30,16 +32,6 @@ extern void finsh_system_init(void);
 extern void finsh_set_device(const char* device);
 #endif
 
-#ifdef __CC_ARM
-extern int Image$$RW_IRAM1$$ZI$$Limit;
-#define STM32_SRAM_BEGIN    (&Image$$RW_IRAM1$$ZI$$Limit)
-#elif __ICCARM__
-#pragma section="HEAP"
-#define STM32_SRAM_BEGIN    (__segment_end("HEAP"))
-#else
-extern int __bss_end;
-#define STM32_SRAM_BEGIN    (&__bss_end)
-#endif
 
 #ifdef USE_FULL_ASSERT
 /**
@@ -85,7 +77,13 @@ void rtthread_startup(void)
     /* init timer system */
     rt_system_timer_init();
 
-    rt_system_heap_init((void*)STM32_SRAM_BEGIN, (void*)STM32_SRAM_END);
+#ifdef RT_USING_EXT_SDRAM
+    sdram_hw_init();
+    rt_system_heap_init((void*)EXT_SDRAM_BEGIN, (void*)EXT_SDRAM_END);
+    sram_init();
+#else
+    rt_system_heap_init((void*)HEAP_BEGIN, (void*)HEAP_END);
+#endif
 
     /* init scheduler system */
     rt_system_scheduler_init();
@@ -96,7 +94,7 @@ void rtthread_startup(void)
 #ifdef RT_USING_FINSH
     /* init finsh */
     finsh_system_init();
-    finsh_set_device( FINSH_DEVICE_NAME );
+    finsh_set_device(RT_CONSOLE_DEVICE_NAME);
 #endif
 
     /* init timer thread */
@@ -115,7 +113,7 @@ void rtthread_startup(void)
 int main(void)
 {
     /* disable interrupt first */
-    rt_hw_interrupt_disable();
+    //rt_hw_interrupt_disable();
 
     /* startup RT-Thread RTOS */
     rtthread_startup();

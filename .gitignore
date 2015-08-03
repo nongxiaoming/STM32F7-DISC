@@ -1,3 +1,6 @@
+*.html
+*.htm
+*.js
 *.pyc
 *.map
 *.dblite
