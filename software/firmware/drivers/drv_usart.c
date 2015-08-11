@@ -56,6 +56,7 @@ static rt_err_t stm32_configure(struct rt_serial_device *serial, struct serial_c
   uart->UartHandle.Init.HwFlowCtl  = UART_HWCONTROL_NONE;
   uart->UartHandle.Init.Mode       = UART_MODE_TX_RX;
   uart->UartHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; 
+
    		switch(cfg->data_bits)
 		{
 		  case DATA_BITS_7:
