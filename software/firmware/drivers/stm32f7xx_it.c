@@ -74,13 +74,13 @@ void NMI_Handler(void)
   * @param  None
   * @retval None
   */
-void MemManage_Handler(void)
-{
+//void MemManage_Handler(void)
+//{
   /* Go to infinite loop when Memory Manage exception occurs */
-  while (1)
-  {
-  }
-}
+//  while (1)
+//  {
+//  }
+//}
 
 /**
   * @brief  This function handles Bus Fault exception.
