@@ -10,6 +10,8 @@ board.c
 stm32f7xx_it.c
 drv_usart.c
 drv_led.c
+drv_sdram.c
+drv_mpu.c
 """)
 
 # add Ethernet drivers.
