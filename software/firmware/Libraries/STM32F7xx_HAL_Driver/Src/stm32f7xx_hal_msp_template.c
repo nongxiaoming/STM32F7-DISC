@@ -2,8 +2,6 @@
   ******************************************************************************
   * @file    stm32f7xx_hal_msp_template.c
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    25-June-2015
   * @brief   HAL MSP module.
   *          This file template is located in the HAL folder and should be copied 
   *          to the user folder.
@@ -13,14 +11,12 @@
                      ##### How to use this driver #####
  ===============================================================================
     [..]
-    This file is generated automatically by STM32CubeMX and eventually modified 
-    by the user
 
   @endverbatim
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -76,9 +72,7 @@
   */
 void HAL_MspInit(void)
 {
-  /* NOTE : This function is generated automatically by STM32CubeMX and eventually  
-            modified by the user
-   */ 
+ 
 }
 
 /**
@@ -87,9 +81,7 @@ void HAL_MspInit(void)
   */
 void HAL_MspDeInit(void)
 {
-  /* NOTE : This function is generated automatically by STM32CubeMX and eventually  
-            modified by the user
-   */
+
 }
 
 /**
@@ -98,9 +90,7 @@ void HAL_MspDeInit(void)
   */
 void HAL_PPP_MspInit(void)
 {
-  /* NOTE : This function is generated automatically by STM32CubeMX and eventually  
-            modified by the user
-   */ 
+ 
 }
 
 /**
@@ -109,9 +99,7 @@ void HAL_PPP_MspInit(void)
   */
 void HAL_PPP_MspDeInit(void)
 {
-  /* NOTE : This function is generated automatically by STM32CubeMX and eventually  
-            modified by the user
-   */
+
 }
 
 /**
