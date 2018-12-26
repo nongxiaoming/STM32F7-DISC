@@ -1,6 +1,6 @@
 #ifndef __DRV_WM8994_H
 #define __DRV_WM8994_H
-
+#include "stm32f7xx.h"
 #include "rtthread.h"
 
 /* Includes ------------------------------------------------------------------*/
