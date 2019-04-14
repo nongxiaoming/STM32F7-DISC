@@ -53,7 +53,7 @@ static rt_err_t wm8994_read_reg(rt_uint16_t reg, rt_uint16_t *data)
     msg[1].len   = 2;
     msg[1].buf   = recv_buf;
 
-    rt_i2c_transfer(codec.i2c_device, msg, 2);
+    rt_i2c_transfer(codec.i2c_bus, msg, 2);
     *data = recv_buf[0];
     *data <<= 8;
     *data |= recv_buf[1];
@@ -73,7 +73,7 @@ static rt_err_t wm8994_write_reg(rt_uint16_t reg, rt_uint16_t data)
     msg.len   = 3;
     msg.buf   = send_buf;
 
-    rt_i2c_transfer(codec.i2c_device, &msg, 1);
+    rt_i2c_transfer(codec.i2c_bus, &msg, 1);
 
     return RT_EOK;
 }
